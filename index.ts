@@ -1,6 +1,6 @@
 import { Observable } from "rxjs";
 
-let counter = 0;
+let counter = 1;
 const observable = Observable.create((observer: any) => {
   try {
     setInterval(() => {
@@ -23,3 +23,4 @@ setTimeout(() => {
 function log(val) {
   console.log(val);
 }
+
