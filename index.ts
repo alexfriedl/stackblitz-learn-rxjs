@@ -1,20 +1,25 @@
-import { Observable } from 'rxjs';
+import { Observable } from "rxjs";
 
 let counter = 0;
-const observable = Observable.create( (observer:any) => {
-  observer.next('first')
-  setInterval(() => {
-    observer.next(counter++)
-  }, 1000)
-})
-
-observable.subscribe((val) => {
-  if(val === 1) {
-    log(val);
+const observable = Observable.create((observer: any) => {
+  try {
+    setInterval(() => {
+      observer.next(counter++);
+    }, 500);
+  } catch (err) {
+    observer.error(err)
   }
-})
+});
 
+const observer = observable.subscribe(
+  (val:any) => log(val),
+  (error:any) => log(error)
+);
+
+setTimeout(() => {
+  observer.unsubscribe();
+}, 1500)
 
 function log(val) {
-  console.log(val)
+  console.log(val);
 }
