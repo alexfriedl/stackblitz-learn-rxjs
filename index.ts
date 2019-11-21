@@ -5,7 +5,7 @@ const observable = Observable.create((observer: any) => {
   try {
     setInterval(() => {
       observer.next(counter++);
-    }, 500);
+    }, 5);
   } catch (err) {
     observer.error(err)
   }
@@ -18,9 +18,8 @@ const observer = observable.subscribe(
 
 setTimeout(() => {
   observer.unsubscribe();
-}, 1500)
+}, 50)
 
 function log(val) {
   console.log(val);
 }
-
