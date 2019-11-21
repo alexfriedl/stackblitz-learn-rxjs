@@ -1,10 +1,10 @@
-import { Observable } from 'rxjs';
+import { Observable } from "rxjs";
 
 let counter: number = 1;
 
 const observable = Observable.create((observer: any) => {
   try {
-    observer.next('start');
+    observer.next("start");
     setInterval(() => {
       observer.next(counter++);
     }, 500);
@@ -14,13 +14,13 @@ const observable = Observable.create((observer: any) => {
 });
 
 const observer = observable.subscribe(
-  (val: any) => addItem(val, 'First '),
-  (error: any) => log(error),
+  (val: any) => addItem("First " + val),
+  (error: any) => log(error)
 );
 
 const observer2 = observable.subscribe(
-  (val: any) => addItem(val, 'Second '),
-  (error: any) => log(error),
+  (val: any) => addItem("Second " + val),
+  (error: any) => log(error)
 );
 
 observer.add(observer2);
@@ -33,10 +33,10 @@ function log(val) {
   console.log(val);
 }
 
-function addItem(val:any, name) {
-  let node = document.createElement('li');
-  var textnode = document.createTextNode(name + val);
+function addItem(val: any) {
+  let node = document.createElement("li");
+  var textnode = document.createTextNode(val);
   node.appendChild(textnode);
-  document.getElementById('output').appendChild(node);
+  document.getElementById("output").appendChild(node);
   console.log(val);
 }
