@@ -31,3 +31,4 @@ function addItem(val: any) {
   node.appendChild(textnode);
   document.getElementById('output').appendChild(node);
 }
+
