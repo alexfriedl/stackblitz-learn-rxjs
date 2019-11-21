@@ -1,3 +1,3 @@
 # rxjs-qksshj
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/rxjs-qksshj)
+[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/stackblitz-learn-rxjs)
