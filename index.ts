@@ -1,37 +1,33 @@
 import { Observable } from "rxjs";
+import 'rxjs/add/operator/share';
 
 let counter: number = 1;
+let name: string = "I am good";
 
 const observable = Observable.create((observer: any) => {
   try {
-    observer.next("start");
+    observer.next("Hii");
+    observer.next("How are you");
     setInterval(() => {
-      observer.next(counter++);
-    }, 500);
+      observer.next(name);
+    }, 2000);
   } catch (err) {
     observer.error(err);
   }
-});
-
-const observer = observable.subscribe(
-  (val: any) => addItem("First " + val),
-  (error: any) => log(error)
-);
-
-const observer2 = observable.subscribe(
-  (val: any) => addItem("Second " + val),
-  (error: any) => log(error)
-);
-
-observer.add(observer2);
+}).share();
 
 setTimeout(() => {
-  observer.unsubscribe();
-}, 2500);
+  const observer = observable.subscribe(
+    (val: any) => addItem(val),
+    (error: any) => addItem(error)
+  );
+}, 1500);
 
-function log(val) {
-  console.log(val);
-}
+setTimeout(() => {
+  const observer2 = observable.subscribe((val: any) =>
+    addItem("2: " + val)
+  );
+}, 1000)
 
 function addItem(val: any) {
   let node = document.createElement("li");
