@@ -4,7 +4,7 @@ import 'rxjs/add/operator/share';
 let counter: number = 1;
 let name: string = "I am good";
 
-// Create an observable
+// Create an observable (beobachtbarer Stream mit Daten)
 // A stream of values you can observe
 // 
 // 1. const observable = Observable.create() - create method
@@ -24,7 +24,7 @@ const observable = Observable.create((observer: any) => {
 }).share();
 
 // Create an observer
-// A subscription of an observable that displays its data
+// Reads values coming from the observable being subscribed (subscription)
 // const observer = observable.subscribe()
 // Pass value, error and completed as arguments
 setTimeout(() => {
