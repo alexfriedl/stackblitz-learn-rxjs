@@ -27,20 +27,26 @@ const observable = Observable.create((observer: any) => {
 //
 // const observer = observable.subscribe()
 // Pass value, error and completed as arguments
-const observer = observable.subscribe(
-  (val: any) => addItem(val),
+const observer1 = observable.subscribe(
+  (val: any) => addItem("1: " + val),
   (error: any) => addItem(error)
 );
 
 // Same as above (created a second observer)
 const observer2 = observable.subscribe((val: any) => addItem("2: " + val));
 
+// Same as above (created a third observer) within setTimeout
+
+setTimeout(() => {
+  const observer3 = observable.subscribe((val: any) => addItem("3: " + val))
+}, 3000);
+
 // Connect observers
-observer.add(observer2)
+observer1.add(observer2)
 
 // Unsubscribe observers after 6s
 setTimeout(() => {
-  observer.unsubscribe();
+  observer1.unsubscribe();
 }, 6001)
 
 // Just UI
