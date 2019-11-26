@@ -25,6 +25,7 @@ const observable = Observable.create((observer: any) => {
 
 // Create an observer
 // Reads values coming from the observable being subscribed (subscription)
+//
 // const observer = observable.subscribe()
 // Pass value, error and completed as arguments
 setTimeout(() => {
