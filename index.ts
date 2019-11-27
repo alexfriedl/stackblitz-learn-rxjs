@@ -1,4 +1,4 @@
-import { Observable } from "rxjs";
+import { Observable, fromEvent } from "rxjs";
 import "rxjs/add/operator/share";
 
 let name: string = "I am good";
@@ -8,7 +8,7 @@ let name: string = "I am good";
 //
 // 1. const observable = Observable.create() - create method
 // 2. const observable = new Observable() - instantiation
-// 3. const observable = fromEvent(document, mouseover) - calling  operators
+// 3. const observable = fromEvent(document, mouseover) - calling "creation" operators
 const observable = Observable.create(
   // The Producer is the subscribe function passed as argument of the create method
   // It produces / emits these values or events (i.e. within next method)
@@ -40,7 +40,15 @@ const observable = Observable.create(
     - if a friend is late, he'll miss the first part
   */
 
-.share();
+  .share();
+
+/**
+ * Hot approach
+ * 
+ * Creates an observable from the fromEvent function
+ * fromEvent is a creation operator
+ */
+const observable2 = fromEvent(document, 'mousemove')
 
 // Create an observer
 // Reads values coming from the observable being subscribed (subscription)
@@ -56,7 +64,6 @@ const observer1 = observable.subscribe(
 const observer2 = observable.subscribe((fromObservable: any) => addItem("2: " + fromObservable));
 
 // Same as above (created a third observer) within setTimeout
-
 setTimeout(() => {
   const observer3 = observable.subscribe((fromObservable: any) => addItem("3: " + fromObservable))
 }, 3000);
@@ -68,6 +75,13 @@ observer1.add(observer2)
 setTimeout(() => {
   observer1.unsubscribe();
 }, 6001)
+
+// Same as above (crated a fourth observer) within setTimeout
+setTimeout(() => {
+  const observer4 = observable2.subscribe(
+    fromObservable => addItem('4: ' + fromObservable)
+  )
+})
 
 // Just UI
 function addItem(val: any) {
