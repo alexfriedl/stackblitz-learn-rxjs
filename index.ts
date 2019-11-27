@@ -9,7 +9,10 @@ let name: string = "I am good";
 // 1. const observable = Observable.create() - create method
 // 2. const observable = new Observable() - instantiation
 // 3. const observable = fromEvent(document, mouseover) - calling  operators
-const observable = Observable.create((observer: any) => {
+const observable = Observable.create(
+  // The Producer is the subscribe function passed as argument of the create method
+  // It produces / emits these values or events (i.e. within next method)
+  (observer: any) => {
   try {
     // next(value) adds value to the stream
     observer.next("Hii");
@@ -20,7 +23,24 @@ const observable = Observable.create((observer: any) => {
   } catch (err) {
     observer.error(err);
   }
-}).share();
+  })
+
+/**
+  * Warm approach
+  * https://blog.strongbrew.io/my-favorite-metaphor-for-hot-vs-cold-observables/
+  * 
+  * Cold approach: Watching solo (Netflix) 
+    - if no one listens, it's lazy, no stream
+    - for every listener a new stream is started
+  * Hot approach: Watching public (cinema)
+    - when movie starts everybody sees the same thing
+    - if you are late, you missed the first part
+  * Warm approach: Watching with friends 
+    - when movie starts, you and your friends see the same thing
+    - if a friend is late, he'll miss the first part
+  */
+
+.share();
 
 // Create an observer
 // Reads values coming from the observable being subscribed (subscription)
@@ -28,17 +48,17 @@ const observable = Observable.create((observer: any) => {
 // const observer = observable.subscribe()
 // Pass value, error and completed as arguments
 const observer1 = observable.subscribe(
-  (val: any) => addItem("1: " + val),
+  (fromObservable: any) => addItem("1: " + fromObservable),
   (error: any) => addItem(error)
 );
 
 // Same as above (created a second observer)
-const observer2 = observable.subscribe((val: any) => addItem("2: " + val));
+const observer2 = observable.subscribe((fromObservable: any) => addItem("2: " + fromObservable));
 
 // Same as above (created a third observer) within setTimeout
 
 setTimeout(() => {
-  const observer3 = observable.subscribe((val: any) => addItem("3: " + val))
+  const observer3 = observable.subscribe((fromObservable: any) => addItem("3: " + fromObservable))
 }, 3000);
 
 // Connect observers
