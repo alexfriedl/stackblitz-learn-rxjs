@@ -3,6 +3,9 @@ import "rxjs/add/operator/share";
 
 let name: string = "I am good";
 
+/**
+ * @TODO Improve Comments
+ */
 // Create an observable (beobachtbarer Stream mit Daten)
 // A stream of values you can observe
 //
@@ -26,13 +29,13 @@ const observable = Observable.create(
   })
 
 /**
-  * Warm approach
+  * @Warm approach
   * https://blog.strongbrew.io/my-favorite-metaphor-for-hot-vs-cold-observables/
   * 
-  * Cold approach: Watching solo (Netflix) 
+  * @Cold approach: Watching solo (Netflix) 
     - if no one listens, it's lazy, no stream
     - for every listener a new stream is started
-  * Hot approach: Watching public (cinema)
+  * @Hot approach: Watching public (cinema)
     - when movie starts everybody sees the same thing
     - if you are late, you missed the first part
   * Warm approach: Watching with friends 
@@ -43,7 +46,7 @@ const observable = Observable.create(
   .share();
 
 /**
- * Hot approach
+ * @Hot approach
  * 
  * Creates an observable from the fromEvent function
  * fromEvent is a creation operator
