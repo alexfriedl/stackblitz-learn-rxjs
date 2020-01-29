@@ -7,3 +7,4 @@ const learnfrom = new LearnFrom();
 // Excercises
 // Watch console
 learnfrom.example2();
+
