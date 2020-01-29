@@ -1,31 +1,34 @@
 import { Observable } from "rxjs";
 import "rxjs/add/operator/share";
 
-let name: string = "I am good";
+export const LearnCreate = () => {
+  
+  let name: string = "I am good";
 
-// Create an observable (beobachtbarer Stream mit Daten)
-// A stream of values you can observe
-//
-// 1. const observable = Observable.create() - create method
-// 2. const observable = new Observable() - instantiation
-// 3. const observable = fromEvent(document, mouseover) - calling "creation" operators
-const observable = Observable.create(
-  // The Producer is the subscribe function passed as argument of the create method
-  // It produces / emits these values or events (i.e. within next method)
-  (observer: any) => {
-  try {
-    // next(value) adds value to the stream
-    observer.next("Hii");
-    observer.next("How are you");
-    setInterval(() => {
-      observer.next(name);
-    }, 2000);
-  } catch (err) {
-    observer.error(err);
-  }
-  })
+  // Create an observable (beobachtbarer Stream mit Daten)
+  // A stream of values you can observe
+  //
+  // 1. const observable = Observable.create() - create method
+  // 2. const observable = new Observable() - instantiation
+  // 3. const observable = fromEvent(document, mouseover) - calling "creation" operators
+  const observable = Observable.create(
+    // The Producer is the subscribe function passed as argument of the create method
+    // It produces / emits these values or events (i.e. within next method)
+    (observer: any) => {
+      try {
+        // next(value) adds value to the stream
+        observer.next("Hii");
+        observer.next("How are you");
+        setInterval(() => {
+          observer.next(name);
+        }, 2000);
+      } catch (err) {
+        observer.error(err);
+      }
+    }
+  )
 
-/**
+    /**
   * Warm approach
   * https://blog.strongbrew.io/my-favorite-metaphor-for-hot-vs-cold-observables/
   * 
@@ -40,42 +43,44 @@ const observable = Observable.create(
     - if a friend is late, he'll miss the first part
   */
 
-  .share();
+    .share();
 
+  // Create an observer
+  // Reads values coming from the observable being subscribed (subscription)
+  //
+  // const observer = observable.subscribe()
+  // Pass value, error and completed as arguments
+  const observer1 = observable.subscribe(
+    (fromObservable: any) => addItem("1: " + fromObservable),
+    (error: any) => addItem(error)
+  );
 
+  // Same as above (created a second observer)
+  const observer2 = observable.subscribe((fromObservable: any) =>
+    addItem("2: " + fromObservable)
+  );
 
-// Create an observer
-// Reads values coming from the observable being subscribed (subscription)
-//
-// const observer = observable.subscribe()
-// Pass value, error and completed as arguments
-const observer1 = observable.subscribe(
-  (fromObservable: any) => addItem("1: " + fromObservable),
-  (error: any) => addItem(error)
-);
+  // Same as above (created a third observer) within setTimeout
+  setTimeout(() => {
+    const observer3 = observable.subscribe((fromObservable: any) =>
+      addItem("3: " + fromObservable)
+    );
+  }, 3000);
 
-// Same as above (created a second observer)
-const observer2 = observable.subscribe((fromObservable: any) => addItem("2: " + fromObservable));
+  // Connect observers
+  observer1.add(observer2);
 
-// Same as above (created a third observer) within setTimeout
-setTimeout(() => {
-  const observer3 = observable.subscribe((fromObservable: any) => addItem("3: " + fromObservable))
-}, 3000);
+  // Unsubscribe observers after 6s
+  setTimeout(() => {
+    observer1.unsubscribe();
+  }, 6001);
 
-// Connect observers
-observer1.add(observer2)
-
-// Unsubscribe observers after 6s
-setTimeout(() => {
-  observer1.unsubscribe();
-}, 6001)
-
-
-// Just UI
-function addItem(val: any) {
-  let node = document.createElement("li");
-  var textnode = document.createTextNode(val);
-  node.appendChild(textnode);
-  document.getElementById("output").appendChild(node);
-  console.log(val);
-}
+  // Just UI
+  function addItem(val: any) {
+    let node = document.createElement("li");
+    var textnode = document.createTextNode(val);
+    node.appendChild(textnode);
+    document.getElementById("output").appendChild(node);
+    console.log(val);
+  }
+};
