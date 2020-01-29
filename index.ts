@@ -1,13 +1,17 @@
 import { LearnFrom } from "./uebungen/operators/from";
 import { LearnCreate } from "./uebungen/operators/create";
+import { LearnMerge } from "./uebungen/operators/merge";
 
 /**
  * Übungen
  */
 
-// RXJS from
-const learnfrom = new LearnFrom();
-learnfrom.example3();
+// from
+// const learnfrom = new LearnFrom();
+// learnfrom.example3();
 
-// RXJS create
+// create
 // LearnCreate();
+
+// merge
+LearnMerge();
