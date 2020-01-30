@@ -1,5 +1,4 @@
 import { LearnFrom } from "./uebungen/operators/from";
-import { LearnCreate } from "./uebungen/operators/create";
 import { LearnMerge } from "./uebungen/operators/merge";
 
 /**
