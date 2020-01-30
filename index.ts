@@ -9,7 +9,7 @@ import { InstanceFromJsonPlaceholder } from "./uebungen/utility/jsonplaceholder"
 
 // from
 const learnfrom = new LearnFrom();
-learnfrom.example3();
+learnfrom.example5();
 
 // merge
 // const learnmerge = new LearnMerge();
