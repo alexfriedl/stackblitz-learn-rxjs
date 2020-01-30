@@ -9,6 +9,8 @@ export class LearnFrom {
   private name: string = "LearnFrom";
   private logger: Logger = new Logger(this.name);
 
+  private jsonPlaceholder: JsonPlaceholder = new JsonPlaceholder();
+
   example1() {
     this.logger.log("example 1:", this.name);
 
@@ -134,6 +136,22 @@ export class LearnFrom {
           };
         }),
         filter(callback => callback.age >= 50)
+      )
+      .subscribe(callback => {
+        this.logger.log(callback);
+        return callback;
+      }),
+      this.logger.end();
+  }
+
+  example6() {
+    this.logger.log("example 6:", this.name);
+
+    from(this.jsonPlaceholder)
+      .pipe(
+        // concatMap(callback => callback),
+        map(callback => { callback}),
+        // filter(callback => callback.age >= 50)
       )
       .subscribe(callback => {
         this.logger.log(callback);

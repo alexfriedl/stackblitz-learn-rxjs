@@ -26,6 +26,8 @@ export class Logger {
   log(message, calledByClass?) {
     if (!calledByClass) {
       calledByClass = ''
+    } else {
+      calledByClass = 'logged by ' + calledByClass
     }
     console.log(`${calledByClass}`,  message)
   }
