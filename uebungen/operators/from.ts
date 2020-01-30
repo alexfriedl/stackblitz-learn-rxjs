@@ -2,6 +2,7 @@ import { from } from "rxjs";
 import { map, filter, concatMap, tap, concatAll } from "rxjs/operators";
 
 import { Logger } from "./../utility/logger";
+import { JsonPlaceholder } from "./../utility/jsonplaceholder";
 
 export class LearnFrom {
   // Just for logging
@@ -9,7 +10,7 @@ export class LearnFrom {
   private logger: Logger = new Logger(this.name);
 
   example1() {
-    this.logger.log("example 1:");
+    this.logger.log("example 1:", this.name);
 
     from([1, 2, 3, 4, 5]).subscribe(callback => {
       this.logger.log(callback);
@@ -19,7 +20,7 @@ export class LearnFrom {
   }
 
   example2() {
-    this.logger.log("example 2:");
+    this.logger.log("example 2:", this.name);
 
     from([[1, 2, 3], [4, 9, 5]]).subscribe(callback => {
       callback.map(callback => {
@@ -31,7 +32,7 @@ export class LearnFrom {
   }
 
   example3() {
-    this.logger.log("example 3:");
+    this.logger.log("example 3:", this.name);
 
     from([[1, 2, 3], [4, 9, 5]])
       .pipe(
@@ -46,7 +47,7 @@ export class LearnFrom {
   }
 
   example4() {
-    this.logger.log("example 4:");
+    this.logger.log("example 4:", this.name);
 
     from([
       {
@@ -77,7 +78,7 @@ export class LearnFrom {
   }
 
   example5() {
-    this.logger.log("example 5:");
+    this.logger.log("example 5:", this.name);
 
     from([
       [
