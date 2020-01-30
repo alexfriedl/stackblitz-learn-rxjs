@@ -13,4 +13,4 @@ import { LearnMerge } from "./uebungen/operators/merge";
 // LearnCreate();
 
 // merge
-LearnMerge();
+const learnmerge = new LearnMerge();
