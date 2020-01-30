@@ -14,7 +14,7 @@ export class LearnMerge {
   // import streams => observable<number>
   public mergedStreams = MergedStreams();
 
-  //output: "FOURTH", "THIRD", "SECOND!", "FOURTH", "FIRST!", "THIRD", "FOURTH"
+  // output: 4, 3, 2, 4, 1, 3, 4
   public subscribe = this.mergedStreams.subscribe(val => console.log(val));
 
   constructor() {
