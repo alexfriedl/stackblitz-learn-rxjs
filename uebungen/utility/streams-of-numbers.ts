@@ -12,14 +12,22 @@ export class StreamsOfNumbers {
   fourth = interval(1000);
 }
 
-export class MergedStreams {
-  private streamsOfNumbers = new StreamsOfNumbers();
+export const MergedStreams = () => {
+  const streamsOfNumbers = new StreamsOfNumbers();
 
   //emit outputs from one observable
-  public all = merge(
-    this.streamsOfNumbers.first.pipe(mapTo("1: every 2.5s")),
-    this.streamsOfNumbers.second.pipe(mapTo("2: every 2.0s")),
-    this.streamsOfNumbers.third.pipe(mapTo("3: every 1.5s")),
-    this.streamsOfNumbers.fourth.pipe(mapTo("4: every 1.0s"))
+  return merge(
+
+    streamsOfNumbers.first
+      .pipe(mapTo("1: every 2.5s")),
+
+    streamsOfNumbers.second
+      .pipe(mapTo("2: every 2.0s")),
+
+    streamsOfNumbers.third
+      .pipe(mapTo("3: every 1.5s")),
+
+    streamsOfNumbers.fourth
+      .pipe(mapTo("4: every 1.0s"))
   );
 }
