@@ -22,4 +22,8 @@ export class Logger {
       `${this.styles}`
     );
   }
+
+  log(message) {
+    console.log(message)
+  }
 }
