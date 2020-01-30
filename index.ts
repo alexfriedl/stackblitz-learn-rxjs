@@ -8,14 +8,11 @@ import { InstanceFromJsonPlaceholder } from "./uebungen/utility/jsonplaceholder"
  */
 
 // from
-// const learnfrom = new LearnFrom();
-// learnfrom.example3();
-
-// create
-// LearnCreate();
+const learnfrom = new LearnFrom();
+learnfrom.example1();
 
 // merge
-const learnmerge = new LearnMerge();
+// const learnmerge = new LearnMerge();
 
 // jsonplaceholder
-const instancefromjsonplaceholder = new InstanceFromJsonPlaceholder();
+// const instancefromjsonplaceholder = new InstanceFromJsonPlaceholder();

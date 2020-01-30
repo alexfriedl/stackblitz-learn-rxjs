@@ -1,7 +1,13 @@
 import { from } from "rxjs";
 import { map, filter } from "rxjs/operators";
 
+import { Logger } from "./../utility/logger";
+
 export class LearnFrom { 
+
+  // Just for logging
+  private name: string = 'LearnFrom';
+  private logger: Logger = new Logger(this.name);
 
   /**
    * INPUT: [1, 2, 3, 4, 5]
@@ -12,7 +18,8 @@ export class LearnFrom {
     from([1, 2, 3, 4, 5]).subscribe(callback => { 
       console.log(callback)
       return callback;
-    })
+    }),
+    this.logger.epilogue();
   }
 
   /**
@@ -26,7 +33,8 @@ export class LearnFrom {
         console.log(callback)
         return callback;
       })
-    })
+    }),
+    this.logger.epilogue();
   }
 
   /**
@@ -38,6 +46,11 @@ export class LearnFrom {
       callback
         .map(callback => callback)
         .filter(callback => callback === 4)
-    })
+    }),
+    this.logger.epilogue();
+  }
+
+  constructor() {
+    this.logger.prologue();
   }
 }
