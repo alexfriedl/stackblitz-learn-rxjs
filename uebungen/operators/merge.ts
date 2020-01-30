@@ -1,9 +1,14 @@
 import { interval, merge } from "rxjs";
 import { mapTo } from "rxjs/operators";
 
+import { Logger } from "./../utility/logger";
 import { StreamsOfNumbers } from "./../utility/streams-of-numbers";
 
+
 export class LearnMerge {
+
+  private name: string = 'LearnMerge';
+  private logger: Logger = new Logger(this.name);
 
   // import streams => observable<number>
   private streamsOfNumbers = new StreamsOfNumbers();
@@ -20,22 +25,14 @@ export class LearnMerge {
   public subscribe = this.mergedStreams.subscribe(val => console.log(val));
 
   constructor() {
-    this.prologue();
+    this.logger.prologue();
     this.unsubscribe();
-  }
-
-  prologue() {
-    console.log('LearnMerge:')
-  }
-
-  epilogue() {
-    console.log('End LearnMerge')
   }
 
   unsubscribe() {
     setTimeout(() => {
       this.subscribe.unsubscribe();
-      this.epilogue();
+      this.logger.epilogue();
     }, 3500);
   }
 }
