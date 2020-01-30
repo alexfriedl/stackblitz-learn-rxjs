@@ -9,14 +9,14 @@ export class Logger {
     this.name = name;
   }
 
-  prologue() {
+  start() {
     console.log(
       `%c Start ${this.name}`,
       `${this.styles}`
     );
   }
 
-  epilogue() {
+  end() {
     console.log(
       `%c End ${this.name}`,
       `${this.styles}`

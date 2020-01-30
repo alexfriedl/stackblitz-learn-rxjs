@@ -19,7 +19,7 @@ export class LearnFrom {
       console.log(callback);
       return callback;
     }),
-      this.logger.epilogue();
+      this.logger.end();
   }
 
   /**
@@ -35,7 +35,7 @@ export class LearnFrom {
         return callback;
       });
     }),
-      this.logger.epilogue();
+      this.logger.end();
   }
 
   /**
@@ -54,10 +54,10 @@ export class LearnFrom {
         console.log(callback);
         return callback;
       }),
-      this.logger.epilogue();
+      this.logger.end();
   }
 
   constructor() {
-    this.logger.prologue();
+    this.logger.start();
   }
 }

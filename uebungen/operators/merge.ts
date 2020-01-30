@@ -18,14 +18,14 @@ export class LearnMerge {
   public subscribe = this.mergedStreams.subscribe(val => console.log(val));
 
   constructor() {
-    this.logger.prologue();
+    this.logger.start();
     this.unsubscribe();
   }
 
   unsubscribe() {
     setTimeout(() => {
       this.subscribe.unsubscribe();
-      this.logger.epilogue();
+      this.logger.end();
     }, 3500);
   }
 }
