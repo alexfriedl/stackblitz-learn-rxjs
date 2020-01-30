@@ -23,12 +23,12 @@ export class Logger {
     );
   }
 
-  log(message, calledByClass?) {
-    if (!calledByClass) {
-      calledByClass = ''
+  log(message, loggedByClass?) {
+    if (!loggedByClass) {
+      loggedByClass = ''
     } else {
-      calledByClass = 'logged by ' + calledByClass
+      loggedByClass = 'logged by ' + loggedByClass
     }
-    console.log(`${calledByClass}`,  message)
+    console.log(`${loggedByClass}`,  message)
   }
 }
