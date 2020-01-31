@@ -23,12 +23,16 @@ export class Logger {
     );
   }
 
-  log(message, loggedByClass?) {
+  log(message, loggedByClass?:string, append?:string) {
     if (!loggedByClass) {
       loggedByClass = ''
     } else {
-      loggedByClass = 'logged by ' + loggedByClass
+      loggedByClass = 'LOG by ' + loggedByClass
     }
-    console.log(`${loggedByClass}`,  message)
+    if (!append) {
+      append = ''
+    }
+    //console.log(JSON.stringify(message))
+    console.log(message, `${loggedByClass}${append}`)
   }
 }

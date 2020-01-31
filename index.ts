@@ -7,7 +7,7 @@ import { LearnMerge } from "./uebungen/operators/merge";
 
 // from
 const learnfrom = new LearnFrom();
-learnfrom.example5();
+learnfrom.example6();
 
 // merge
 // const learnmerge = new LearnMerge();

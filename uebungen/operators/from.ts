@@ -3,6 +3,7 @@ import { map, filter, concatMap, tap, concatAll } from "rxjs/operators";
 
 import { Logger } from "./../utility/logger";
 import { JsonPlaceholder } from "./../utility/jsonplaceholder";
+import { User } from "./../utility/user.model";
 
 export class LearnFrom {
   // Just for logging
@@ -146,15 +147,17 @@ export class LearnFrom {
 
   example6() {
     this.logger.log("example 6:", this.name);
+    const users: User = this.jsonPlaceholder.fetch();
 
-    from(this.jsonPlaceholder)
+    from(users)
       .pipe(
-        // concatMap(callback => callback),
-        map(callback => { callback}),
+        concatMap(users => users),
+        filter(users => users.id % 2 === 0)
+        // map(callback => callback),
         // filter(callback => callback.age >= 50)
       )
       .subscribe(callback => {
-        this.logger.log(callback);
+        this.logger.log(callback, this.name, ' example6');
         return callback;
       }),
       this.logger.end();
